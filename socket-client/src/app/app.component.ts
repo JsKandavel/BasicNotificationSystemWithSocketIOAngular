@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.socket.on('notification', (data: any) => {
-      this.data = data;
+      this.data = data.data.message;
+      console.log('data', this.data)
     });
   }
 }
