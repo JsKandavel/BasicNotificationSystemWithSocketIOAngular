@@ -20,5 +20,10 @@ export class AppComponent implements OnInit {
       this.data = data.data.message;
       console.log('data', this.data)
     });
+    this.socket.on('message', (data: any) => {
+      this.data = data;
+      console.log('data', this.data)
+    });
+    this.socket.emit('message', 'hi');
   }
 }

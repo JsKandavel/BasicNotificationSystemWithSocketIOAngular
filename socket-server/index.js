@@ -33,6 +33,12 @@ const server = app.listen(port, () => {
 // Socket Layer over Http Server
 const socket = require('socket.io')(server, {cors: {origin: "*"}});
 // On every Client Connection
-socket.on('connection', (socket) => {
+socket.on('connection', (sock) => {
   console.log('Socket: client connected');
+  sock.on('message', (message) => {
+      console.log(message);
+      if(message != '')
+      socket.emit('message', ` ${message}`);
+      //io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
+  });
 });
